@@ -113,12 +113,13 @@ frontend/
   </ul>
 
   <hr />
+    <h2>Deployment</h2>
+  <p>The Project is Deployed on Vercel : <a href="https://book-stop-khaki.vercel.app">https://book-stop-khaki.vercel.app/</a></p>
 
   <h2>🛠️ Future Improvements</h2>
   <ul>
     <li>🔄 Pagination for long search results</li>
     <li>🎨 Filter by year, author, subject</li>
-    <li>🌐 Deploy with Vercel or Netlify</li>
     <li>👤 Add user login system with Firebase</li>
   </ul>
 
