@@ -7,177 +7,130 @@
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; padding: 2rem; color: #333;">
 
-  <h1>📚 Book Stop – Beginner Friendly React JS Project Documentation</h1>
+  <h1>📚 Book Stop – Beginner Friendly React.js Book Search App</h1>
 
-  <p>Welcome to <strong>Book Stop</strong>, a beginner-friendly web application built using <strong>React.js</strong>. This app helps users search for books and mark their favorite ones using the <strong>Open Library API</strong>.</p>
+  <p><strong>Book Stop</strong> is a beginner-friendly React project that allows users to search for books and mark favourites. It uses the <strong>Open Library API</strong> to fetch book data.</p>
 
   <hr />
 
-  <h2>🧠 What You'll Learn From This Project</h2>
+  <h2>💡 Tech Stack</h2>
   <ul>
-    <li>How to build a full React app from scratch</li>
-    <li>How to use components, props, state, and hooks (<code>useState</code>, <code>useEffect</code>)</li>
-    <li>How to fetch data from an external API (Open Library)</li>
-    <li>How to use <code>localStorage</code> for persisting data</li>
-    <li>Routing using <code>react-router-dom</code></li>
-    <li>Basic responsive CSS and layout design</li>
+    <li><strong>React.js</strong> – Frontend library for UI</li>
+    <li><strong>Vite</strong> – Build tool for fast development</li>
+    <li><strong>React Router</strong> – Client-side routing</li>
+    <li><strong>Open Library API</strong> – Free API for book data</li>
+    <li><strong>LocalStorage</strong> – For saving favourite books</li>
+    <li><strong>HTML5 + CSS3</strong> – Styling and layout</li>
   </ul>
 
   <hr />
 
-  <h2>🏗️ Project Structure</h2>
+  <h2>🔗 How Open Library API is Used</h2>
+  <p>
+    This project uses the <a href="https://openlibrary.org/developers/api" target="_blank">Open Library Search API</a> to get book data:
+  </p>
+  <pre><code>https://openlibrary.org/search.json?title=harry+potter</code></pre>
+  <p>API is called in <code>src/services/api.jsx</code>:</p>
+  <pre><code>
+export const searchBooksByTitle = async (title) => {
+  const response = await fetch(
+    `https://openlibrary.org/search.json?title=${title}`
+  );
+  const data = await response.json();
+  return data.docs;
+};
+  </code></pre>
+
+  <p>Only books with cover images are shown, using:</p>
+  <pre><code>https://covers.openlibrary.org/b/id/{cover_i}-L.jpg</code></pre>
+
+  <hr />
+
+  <h2>📁 Folder Structure</h2>
   <pre>
-book-stop/
+frontend/
 ├── public/
+│   └── vite.svg
 ├── src/
+│   ├── assets/
 │   ├── components/
-│   │   └── BookCard.jsx
+│   │   ├── bookcard.jsx
+│   │   └── navbar.jsx
 │   ├── pages/
-│   │   ├── Home.jsx
-│   │   └── Favourites.jsx
+│   │   ├── home.jsx
+│   │   └── favourites.jsx
 │   ├── services/
 │   │   └── api.jsx
 │   ├── App.jsx
-│   ├── main.jsx
 │   ├── App.css
-│   └── index.css
-└── package.json
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── vite.config.js
+├── package.json
+└── README.md
   </pre>
 
   <hr />
 
   <h2>🚀 How to Run</h2>
   <ol>
-    <li><strong>Clone the repo:</strong>
-      <pre><code>git clone https://github.com/your-username/book-stop.git
-cd book-stop</code></pre>
+    <li>Clone the repo:
+      <pre><code>git clone https://github.com/your-username/book-stop.git</code></pre>
     </li>
-    <li><strong>Install dependencies:</strong>
+    <li>Navigate to the frontend folder:
+      <pre><code>cd book-stop/frontend</code></pre>
+    </li>
+    <li>Install dependencies:
       <pre><code>npm install</code></pre>
     </li>
-    <li><strong>Start the development server:</strong>
+    <li>Start the development server:
       <pre><code>npm run dev</code></pre>
     </li>
-    <li><strong>Visit:</strong> <code>http://localhost:5173</code> in your browser</li>
+    <li>Open browser at: <code>http://localhost:5173</code></li>
   </ol>
 
   <hr />
 
-  <h2>🧱 Code Explanation</h2>
-
-  <h3>App.jsx</h3>
+  <h2>📦 Feature Overview</h2>
   <ul>
-    <li>Main component that defines the layout.</li>
-    <li>Uses <code>Routes</code> and <code>Route</code> from <code>react-router-dom</code>.</li>
-    <li>Renders the <code>NavBar</code>, main content, and footer.</li>
-  </ul>
-
-  <h3>NavBar.jsx</h3>
-  <ul>
-    <li>Navigation bar with links to Home and Favourites.</li>
-    <li>Highlights the active link using <code>useLocation()</code>.</li>
-  </ul>
-
-  <h3>Home.jsx</h3>
-  <ul>
-    <li>Displays a search form and book results.</li>
-    <li>Uses Open Library API to fetch book data.</li>
-    <li>Initial load shows default books.</li>
-  </ul>
-
-  <h3>BookCard.jsx</h3>
-  <ul>
-    <li>Reusable component to display each book.</li>
-    <li>Includes title, cover image, and year.</li>
-    <li>❤️ button adds/removes from favourites (uses localStorage).</li>
-  </ul>
-
-  <h3>Favourites.jsx</h3>
-  <ul>
-    <li>Loads and displays books saved to favourites.</li>
-    <li>Uses <code>useEffect</code> and <code>localStorage</code>.</li>
-  </ul>
-
-  <h3>api.jsx</h3>
-  <ul>
-    <li>Fetches data using Open Library API.</li>
-    <li>searchBooksByTitle – finds books by title.</li>
-    <li>getTopRatedBooks – fetches sample default books.</li>
-  </ul>
-
-  <pre><code>
-export const searchBooksByTitle = async (title) => {
-  const response = await fetch(`https://openlibrary.org/search.json?title=${title}`);
-  const data = await response.json();
-  return data.docs;
-};
-  </code></pre>
-
-  <hr />
-
-  <h2>💡 Key Concepts</h2>
-
-  <h4>React Components</h4>
-  <pre><code>
-function BookCard({ book }) {
-  return &lt;div&gt;{book.title}&lt;/div&gt;;
-}
-  </code></pre>
-
-  <h4>useState</h4>
-  <pre><code>const [books, setBooks] = useState([]);</code></pre>
-
-  <h4>useEffect</h4>
-  <pre><code>
-useEffect(() =&gt; {
-  loadBooks();
-}, []);
-  </code></pre>
-
-  <h4>localStorage</h4>
-  <pre><code>
-localStorage.setItem("favourites", JSON.stringify(bookList));
-  </code></pre>
-
-  <h4>React Router</h4>
-  <pre><code>&lt;Route path="/favourites" element={&lt;Favourites /&gt;} /&gt;</code></pre>
-
-  <hr />
-
-  <h2>📱 Responsive Design</h2>
-  <ul>
-    <li>Flexbox & CSS Grid for layout</li>
-    <li>Books shown in grid on desktop, stacked on mobile</li>
-    <li>Sticky navbar and footer</li>
+    <li>🔍 Search for books by title</li>
+    <li>📕 Only display books that have cover images</li>
+    <li>❤️ Add/remove favourites using the heart icon</li>
+    <li>📌 View favourites on a separate page</li>
+    <li>💾 Data saved in <code>localStorage</code> for persistence</li>
   </ul>
 
   <hr />
 
-  <h2>🧪 Sample Search Queries</h2>
+  <h2>🧠 Learnings</h2>
   <ul>
-    <li>Harry Potter</li>
-    <li>Lord of the Rings</li>
-    <li>Sherlock Holmes</li>
+    <li>React basics: components, props, and state</li>
+    <li>React hooks: <code>useState</code> and <code>useEffect</code></li>
+    <li>API integration and async/await</li>
+    <li>Routing using React Router</li>
+    <li>Working with localStorage</li>
+    <li>CSS Flexbox/Grid for responsiveness</li>
   </ul>
 
   <hr />
 
-  <h2>🛠️ Future Enhancements</h2>
+  <h2>🛠️ Future Improvements</h2>
   <ul>
-    <li>Pagination</li>
-    <li>Author/year filters</li>
-    <li>Global state with Context API</li>
-    <li>Login/signup system</li>
+    <li>🔄 Pagination for long search results</li>
+    <li>🎨 Filter by year, author, subject</li>
+    <li>🌐 Deploy with Vercel or Netlify</li>
+    <li>👤 Add user login system with Firebase</li>
   </ul>
 
   <hr />
 
   <h2>📃 License</h2>
-  <p>MIT</p>
+  <p>MIT License</p>
 
-  <h2>👨‍💻 Made with ❤️ by Vancy Fernandes</h2>
+  <h2>👨‍💻 Created by Vancy Fernandes</h2>
 
-  <p>Feel free to fork or improve this project for your own learning journey!</p>
+  <p>Feel free to fork, improve, and share this project as part of your React learning journey!</p>
 
 </body>
 </html>
