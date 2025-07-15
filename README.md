@@ -1,3 +1,3 @@
 #Instructions
 
-<h2>All thw code of this Project is placed in the project Folder Above☝️</h2>
+<h2>All the code of this Project is placed in the Folder react_book_stop Above☝️</h2>
