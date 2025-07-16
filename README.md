@@ -114,7 +114,8 @@ frontend/
 
   <hr />
     <h2>Deployment</h2>
-  <p>The Project is Deployed on Vercel : <a href="https://book-stop-khaki.vercel.app">https://book-stop-khaki.vercel.app/</a></p>
+  <p>The Project is Deployed on Vercel : <a href="https://book-stop-4szn.vercel.app/">https://book-stop-4szn.vercel.app/
+</a></p>
 
   <h2>🛠️ Future Improvements</h2>
   <ul>
